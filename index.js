@@ -6,7 +6,8 @@ import rehypeSlug from "rehype-slug";
 import remarkFrontmatter from "remark-frontmatter";
 import remarkShikiTwoslash from "remark-shiki-twoslash";
 import { visit } from "unist-util-visit";
-
+import readingTime from "remark-reading-time";
+import readingMdxTime from "remark-reading-time/mdx";
 import { name as isValidIdentifierName } from "estree-util-is-identifier-name";
 import { valueToEstree } from "estree-util-value-to-estree";
 import { parse as parseYaml } from "yaml";
@@ -190,6 +191,8 @@ export default async function (options) {
       jsxImportSource: "solid-js",
       providerImportSource: "solid-mdx",
       rehypePlugins: [
+        readingTime,
+        readingMdxTime,
         rehypeSlug,
         rehypeCollectHeadings,
         [rehypeRaw, { passThrough: nodeTypes }],
